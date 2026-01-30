@@ -1,0 +1,6 @@
+Trend tests (weeks 1–11)
+Score inflation (mean vs week): Spearman r = 1.0000, p = 0.0000
+Variance compression (std vs week): Spearman r = -0.8455, p = 0.0010
+Variance compression (var vs week): Spearman r = -0.8455, p = 0.0010
+OLS mean ~ week: slope = 0.3208, p = 0.0000
+OLS std ~ week: slope = -0.0761, p = 0.0006
