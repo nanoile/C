@@ -1,0 +1,7 @@
+GMM+EM (K=3, EM_iters=2)
+Overall consistency C = 0.9538
+Certainty mean = 0.2564
+Certainty std = 0.2347
+Total contestant-weeks = 2777
+Total (season, week) cells = 335
+Final GMM: weights=[0.2793631  0.36693376 0.35370314], means=[-1.02436298  0.61373984  0.16871122], stds=[0.97847121 1.12916746 1.20541003]

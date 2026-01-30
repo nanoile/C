@@ -1,0 +1,5 @@
+Overall consistency C = 0.9543
+Certainty mean = 0.4463
+Certainty std = 0.2052
+Total contestant-weeks = 2777
+Total (season, week) cells = 335
