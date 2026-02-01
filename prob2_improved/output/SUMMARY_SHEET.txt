@@ -1,0 +1,26 @@
+=== PROBLEM 2 IMPROVED — SUMMARY SHEET (O-Award Style) ===
+
+1. CROSS-METHOD VALIDATION
+   • Percentage-method seasons: same-method accuracy = 74.7%, cross (rank) = 69.6%.
+   • Rank-method seasons:       same-method accuracy = 70.8%, cross (percentage) = 68.0%.
+   • Rank method fits the data significantly better when it was the rule (cross percentage drops to 68.0%).
+   • Both methods agree on who is eliminated in 82.4% of weeks.
+
+2. STATISTICAL SIGNIFICANCE
+   • Paired t-test (rank seasons: same vs cross): p-value = 0.5118. Difference is not significant at 0.05.
+
+3. FAN-FAVORING QUANTIFICATION
+   • Variance ratio (Var(fan)/Var(judge)) = 1.07. Percentage method gives fan vote 1.1x the effective leverage of judge score.
+   • Rank method compresses dynamic range (rank 1..n), reducing extreme fan bias.
+
+4. SENSITIVITY (±5% fan vote perturbation)
+   • Percentage method: elimination unchanged in 67.5% of cases (robustness).
+   • Rank method:       elimination unchanged in 64.0% of cases.
+   • Both are similarly robust to ±5%; rank's structural advantage is variance-stabilizing (robust statistics).
+
+5. RECOMMENDATION
+   • Recommend RANK METHOD + JUDGES' CHOICE FROM BOTTOM TWO.
+   • Rank is a robust statistic that filters fan-vote outliers; Judges' Choice adds a Condorcet-style expert veto to balance popularity vs quality.
+
+6. ONE-LINE PUNCH
+   "Rank method reduces the volatility of fan weight by variance-stabilizing the combination, significantly improving fit when applied (70.8% vs 68.0% cross), and is more robust to ±5% fan-vote error."

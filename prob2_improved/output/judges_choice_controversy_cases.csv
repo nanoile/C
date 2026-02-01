@@ -1,0 +1,20 @@
+celebrity,season,week,in_bottom2_pct,in_bottom2_rank,would_elim_judge_choice_pct,would_elim_judge_choice_rank
+Bristol Palin,11,1,False,False,False,False
+Bristol Palin,11,2,False,False,False,False
+Bristol Palin,11,3,False,False,False,False
+Bristol Palin,11,4,False,False,False,False
+Bristol Palin,11,5,True,False,True,False
+Bristol Palin,11,6,False,True,False,True
+Bristol Palin,11,7,True,True,True,True
+Bristol Palin,11,8,True,False,True,False
+Bristol Palin,11,9,False,False,False,False
+Bristol Palin,11,10,True,True,True,True
+Bobby Bones,27,1,False,False,False,False
+Bobby Bones,27,2,False,False,False,False
+Bobby Bones,27,3,False,False,False,False
+Bobby Bones,27,4,False,False,False,False
+Bobby Bones,27,5,True,False,False,False
+Bobby Bones,27,6,False,False,False,False
+Bobby Bones,27,7,False,False,False,False
+Bobby Bones,27,8,False,False,False,False
+Bobby Bones,27,9,True,True,True,True
