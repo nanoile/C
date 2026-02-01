@@ -158,7 +158,7 @@
 |------|------|
 | `output/consistency_by_week.csv` | 每周一致性、规则、n_samples、n_accepted、n_steps、accept_rate。 |
 | `output/consistency_by_season.csv` | 按季平均一致性。 |
-| `output/estimated_fan_votes.csv` | 每位选手–周的 vote_share_mean、vote_share_std、certainty、eliminated_this_week。 |
+| `output/estimated_fan_votes.csv` | 每位选手–周的 judge_share、vote_share_mean、vote_share_std、certainty、eliminated_this_week。 |
 | `output/summary_metrics.txt` | 整体 C、确定性均值/标准差、MH 接受率、与原 mc 的对比。 |
 | `figures/fig1_consistency_by_week.png` | 每周一致性柱状图。 |
 | `figures/fig2_consistency_by_season.png` | 按季一致性柱状图。 |
@@ -167,6 +167,11 @@
 | `figures/fig5_example_vote_estimates.png` | 示例周投票份额估计（后验均值±1 std）。 |
 | `figures/fig6_mh_accept_rate_by_week.png` | MH 接受率按周。 |
 | `figures/fig7_consistency_comparison_mc_vs_improved.png` | 一致性：改进版 vs 原版（若存在 mc 输出）。 |
+| `figures/fig8_iceberg_reconstruction.png` | **冰山图**：Total = Judge + Fan，堆叠柱 + 误差棒 ±1σ + 淘汰阈值线。 |
+| `figures/fig9_funnel_judge_vs_certainty.png` | **漏斗图**：裁判分 vs 确定性，淘汰/晋级分色（揭示约束不对称）。 |
+| `figures/fig10_ridge_posterior.png` | **山峦图**：某周（如 S3 W5）各选手观众投票后验密度 Ridge Plot。 |
+
+三张亮点图的详细解读见 **`VISUALIZATION_ANALYSIS.md`**。
 
 ---
 

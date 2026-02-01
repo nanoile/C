@@ -1,0 +1,7 @@
+Problem 3 Improved V5
+Judge (A+B) R² = 0.5515
+Best survival model (by AUC): Logit full (nonlinear + Age×Week)
+  Logit (baseline): Pseudo-R² = 0.0345, AUC = 0.6272, AIC = 2422, BIC = 2837
+  Logit + judge_z² (safe zone): Pseudo-R² = 0.0454, AUC = 0.6625, AIC = 2398, BIC = 2819
+  Logit + Age×Week (veteran): Pseudo-R² = 0.2684, AUC = 0.8458, AIC = 1873, BIC = 2300
+  Logit full (nonlinear + Age×Week): Pseudo-R² = 0.2736, AUC = 0.8479, AIC = 1863, BIC = 2295

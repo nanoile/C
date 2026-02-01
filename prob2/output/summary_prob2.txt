@@ -1,0 +1,6 @@
+Problem 2 summary
+Percentage-method seasons: accuracy same method = 0.7466
+Percentage-method seasons: accuracy cross (rank)   = 0.6960
+Rank-method seasons:       accuracy same method = 0.7081
+Rank-method seasons:       accuracy cross (pct)   = 0.6799
+Weeks where both methods agree on who is eliminated: 276 / 335

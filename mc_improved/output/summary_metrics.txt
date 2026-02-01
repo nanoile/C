@@ -1,7 +1,7 @@
 === mc_improved (MH + refined Rule B) ===
-Overall consistency C = 0.9549
-Certainty mean = 0.8562, std = 0.0652
-Mean MH accept rate = 0.6417
+Overall consistency C = 0.9554
+Certainty mean = 0.7244, std = 0.1135
+Mean MH accept rate = 0.6883
 Total contestant-weeks = 2777
 Total (season, week) cells = 335
 
@@ -10,10 +10,10 @@ Overall consistency C = 0.9543
 Certainty mean = 0.4463, std = 0.2052
 
 === Comparison ===
-Delta C (improved - original) = +0.0006
-Delta certainty mean = +0.4099
+Delta C (improved - original) = +0.0011
+Delta certainty mean = +0.2781
 
-Certainty mean = 0.8562
-Certainty std = 0.0652
+Certainty mean = 0.7244
+Certainty std = 0.1135
 Total contestant-weeks = 2777
 Total (season, week) cells = 335

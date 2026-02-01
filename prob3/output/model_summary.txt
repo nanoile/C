@@ -1,0 +1,5 @@
+Problem 3 Multilevel Model Summary
+N observations: 2777
+Judge model: age coef = -0.0302, se = 0.0016
+Fan model: age coef = -0.0079, se = 0.0008
+Top partner (fan): Charlotte Jorgensen (effect = 0.3446)

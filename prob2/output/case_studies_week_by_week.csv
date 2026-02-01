@@ -1,0 +1,36 @@
+celebrity,season,week,rule_used,actual_eliminated,would_elim_under_pct,would_elim_under_rank,in_bottom2_pct,in_bottom2_rank,same_result_both_methods
+Jerry Rice,2,1,rank,Kenny Mayne,False,False,False,False,True
+Jerry Rice,2,2,rank,Tatum O'Neal,False,False,False,False,True
+Jerry Rice,2,3,rank,Giselle Fernandez,False,False,False,False,True
+Jerry Rice,2,4,rank,Master P,False,False,False,False,True
+Jerry Rice,2,5,rank,Tia Carrere,False,False,False,False,True
+Jerry Rice,2,6,rank,George Hamilton,False,False,True,True,True
+Jerry Rice,2,7,rank,Lisa Rinna,False,False,True,True,True
+Jerry Rice,2,8,rank,,True,False,True,True,False
+Billy Ray Cyrus,4,1,percentage,,True,False,True,False,False
+Billy Ray Cyrus,4,2,percentage,Paulina Porizkova,False,False,False,False,True
+Billy Ray Cyrus,4,3,percentage,Shandi Finnessey,False,False,False,True,True
+Billy Ray Cyrus,4,4,percentage,Leeza Gibbons,False,False,False,False,True
+Billy Ray Cyrus,4,5,percentage,Clyde Drexler,False,False,False,False,True
+Billy Ray Cyrus,4,6,percentage,Heather Mills,False,False,False,False,True
+Billy Ray Cyrus,4,7,percentage,John Ratzenberger,False,False,True,False,True
+Billy Ray Cyrus,4,8,percentage,Billy Ray Cyrus,True,True,True,True,True
+Bristol Palin,11,1,percentage,David Hasselhoff,False,False,False,False,True
+Bristol Palin,11,2,percentage,Michael Bolton,False,False,False,False,True
+Bristol Palin,11,3,percentage,Margaret Cho,False,False,False,False,True
+Bristol Palin,11,4,percentage,The Situation,False,False,False,False,True
+Bristol Palin,11,5,percentage,Florence Henderson,False,False,True,False,True
+Bristol Palin,11,6,percentage,Audrina Patridge,False,False,False,True,True
+Bristol Palin,11,7,percentage,Rick Fox,False,False,True,True,True
+Bristol Palin,11,8,percentage,Kurt Warner,False,False,True,False,True
+Bristol Palin,11,9,percentage,Brandy,False,False,False,False,True
+Bristol Palin,11,10,percentage,,True,True,True,True,True
+Bobby Bones,27,1,percentage,Nikki Glaser,False,False,False,False,True
+Bobby Bones,27,2,percentage,Danelle Umstead,False,False,False,False,True
+Bobby Bones,27,3,percentage,Nancy McKeon,False,False,False,False,True
+Bobby Bones,27,4,percentage,Tinashe,False,False,False,False,True
+Bobby Bones,27,5,percentage,,False,False,True,False,True
+Bobby Bones,27,6,percentage,Mary Lou Retton,False,False,False,False,True
+Bobby Bones,27,7,percentage,John Schneider,False,False,False,False,True
+Bobby Bones,27,8,percentage,Juan Pablo Di Pace,False,False,False,False,True
+Bobby Bones,27,9,percentage,,True,True,True,True,True

@@ -1,0 +1,2 @@
+judge_r2,0.5515494299546007
+best_survival_model,Logit full (nonlinear + Age×Week)

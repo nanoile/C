@@ -18,8 +18,10 @@ python run_analysis.py
 ## 输出
 
 - `output/`：`consistency_by_week.csv`、`consistency_by_season.csv`、`estimated_fan_votes.csv`、`summary_metrics.txt`（含与原 mc 对比）。
-- `figures/`：fig1–fig7（一致性、确定性、示例投票、MH 接受率、改进版 vs 原版对比）。
+- `figures/`：fig1–fig10（一致性、确定性、示例投票、MH 接受率、对比；**冰山图 fig8、漏斗图 fig9、山峦图 fig10**）。
 
 ## 文档
 
-- `draft_fan_vote_estimation.md`：建模改进说明、图表与表解读、对赛题两问的回答、与原 mc 的对比。
+- **`VISUALIZATION_ANALYSIS.md`**：**三张亮点图**（冰山图、漏斗图、山峦图）的设计目的、读法、解读及与赛题两问的对应。
+- **`MODEL_SPECIFICATION_DRAFT.md`**：**完整、详细的模型构建说明**（论文用）：记号、状态空间、淘汰约束、先验/后验、MH 算法步骤、一致性与确定性定义、与代码对应表；可直接用于论文的「模型」与「推断方法」章节。
+- `draft_fan_vote_estimation.md`：建模改进概要、图表与表解读、对赛题两问的回答、与原 mc 的对比。

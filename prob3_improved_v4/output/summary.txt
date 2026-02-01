@@ -1,0 +1,13 @@
+Problem 3 Improved V4: Strategy Comparison
+Baseline: Judge ~ Age+Industry+Partner, Fan ~ fan_proxy_z (same)
+Strategy A only: Judge ~ lag_judge_z + ..., Fan = proxy (same)
+Strategy B only: Judge = base, Fan = Logit(survived_next ~ judge_z + ...)
+Strategy A+B: Judge with lag, Fan = Logit(survived_next ~ ...)
+
+Baseline: R² Judge = 0.2660, R²/Pseudo-R² Fan = 0.0574
+
+Strategy A only: R² Judge = 0.5515, R²/Pseudo-R² Fan = 0.0574
+
+Strategy B only: R² Judge = 0.2660, R²/Pseudo-R² Fan = 0.0345
+
+Strategy A+B: R² Judge = 0.5515, R²/Pseudo-R² Fan = 0.0345

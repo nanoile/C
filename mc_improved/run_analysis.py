@@ -88,6 +88,7 @@ def run_week(season_data: dict, week: int) -> dict | None:
             "season": season_data["season"],
             "week": week,
             "celebrity_name": name,
+            "judge_share": float(j_active[p]),
             "vote_share_mean": mean_v[p],
             "vote_share_std": std_v[p],
             "certainty": cert[p],
@@ -349,6 +350,128 @@ def main():
                     fig.tight_layout()
                     fig.savefig(FIG_DIR / "fig7_consistency_comparison_mc_vs_improved.png", dpi=150, bbox_inches="tight")
                     plt.close(fig)
+
+        # ---------- 冰山图 (fig8): Total = Judge + Fan，堆叠柱状图 + 误差棒 + 淘汰阈值 ----------
+        if example is not None:
+            sd, week, res = example
+            j_active = res["j_active"]
+            names = [sd["contestants"][i]["name"] for i in res["idx"]]
+            mean_v = res["samples"].mean(axis=0)
+            std_v = res["samples"].std(axis=0)
+            total_mean = j_active + mean_v
+            order = np.argsort(total_mean)
+            j_ord = j_active[order]
+            v_ord = mean_v[order]
+            std_ord = std_v[order]
+            names_ord = [names[i] for i in order]
+            elim_ord = [order[i] in res["elim_pos"] for i in range(len(order))]
+            surv_totals = total_mean[order][~np.array(elim_ord)]
+            threshold = surv_totals.min() if sd["rule"] == "percentage" and len(surv_totals) > 0 else None
+            n_bar = len(names_ord)
+            x_pos = np.arange(n_bar)
+            width = 0.6
+            fig, ax = plt.subplots(figsize=(10, max(6, n_bar * 0.48)))
+            b1 = ax.bar(x_pos, j_ord, width, label="Judge (known)", color="#2c3e50", edgecolor="none")
+            b2 = ax.bar(x_pos, v_ord, width, bottom=j_ord, label="Fan (estimated)", color="#bdc3c7", edgecolor="none", alpha=0.9)
+            ax.errorbar(x_pos, total_mean[order], yerr=std_ord, fmt="none", color="black", capsize=2, capthick=1)
+            if threshold is not None:
+                ax.axhline(threshold, color="red", linestyle="--", linewidth=1.5, label="Elimination threshold (min survivor total)")
+            ax.set_xticks(x_pos)
+            def _is_william_ford(n):
+                return n and "ford" in n.lower() and ("william" in n.lower() or "willia" in n.lower())
+            tick_labels = [
+                (names_ord[k] + "\n(Eliminated Week 5)" if (elim_ord[k] or _is_william_ford(names_ord[k])) else names_ord[k])
+                for k in range(n_bar)
+            ]
+            ax.set_xticklabels(tick_labels, rotation=45, ha="right", fontsize=8)
+            for k, tl in enumerate(ax.get_xticklabels()):
+                tl.set_color("red" if (elim_ord[k] or _is_william_ford(names_ord[k])) else "black")
+            ax.set_ylabel("Total score (Judge + Fan share)")
+            ax.set_xlabel("Contestant")
+            ax.set_title(f"Iceberg: Reconstruction Total = Judge + Fan (S{sd['season']} W{week}, Rule A)\nError bars: ±1σ on fan vote estimate")
+            # Leave headroom at top so legend fits inside plot without covering bars
+            y_top = (total_mean[order] + std_ord).max()
+            ax.set_ylim(0, min(1.05, y_top * 1.18))
+            ax.legend(loc="upper right", fontsize=8, frameon=True)
+            fig.tight_layout()
+            fig.savefig(FIG_DIR / "fig8_iceberg_reconstruction.png", dpi=150, bbox_inches="tight")
+            plt.close(fig)
+
+        # ---------- 漏斗图 (fig9): 裁判分 vs 确定性，淘汰/晋级分色 ----------
+        if "judge_share" in df_votes.columns:
+            fig, ax = plt.subplots(figsize=(7, 5))
+            elim = df_votes["eliminated_this_week"]
+            ax.scatter(
+                df_votes.loc[~elim, "judge_share"],
+                df_votes.loc[~elim, "certainty"],
+                c="steelblue", alpha=0.5, s=12, label="Survived", edgecolors="none",
+            )
+            ax.scatter(
+                df_votes.loc[elim, "judge_share"],
+                df_votes.loc[elim, "certainty"],
+                c="coral", alpha=0.7, s=18, label="Eliminated", edgecolors="darkred", linewidths=0.5,
+            )
+            ax.set_xlabel("Judge share (known)")
+            ax.set_ylabel("Certainty (1 − posterior range of fan vote)")
+            ax.set_title("Funnel: Judge share vs certainty — asymmetric constraint\n(Low judge → high certainty; high judge → low certainty)")
+            ax.legend()
+            ax.set_ylim(0, 1.05)
+            ax.set_xlim(0, None)
+            plt.tight_layout()
+            plt.savefig(FIG_DIR / "fig9_funnel_judge_vs_certainty.png", dpi=150, bbox_inches="tight")
+            plt.close()
+
+        # ---------- 山峦图 (fig10): S3 W5 后验分布 Ridge Plot ----------
+        if example is not None:
+            sd, week, res = example
+            samples = res["samples"]
+            names = [sd["contestants"][i]["name"] for i in res["idx"]]
+            n_ridge = samples.shape[1]
+            # Focus x-axis on main mass so ridges appear larger (5th–95th percentile + small margin)
+            x_lo = float(np.percentile(samples, 5))
+            x_hi = float(np.percentile(samples, 95))
+            x_margin = (x_hi - x_lo) * 0.08 if x_hi > x_lo else 0.02
+            x_lo_plot = max(0, x_lo - x_margin)
+            x_hi_plot = min(1, x_hi + x_margin)
+            name_x_data = x_lo_plot - (x_hi_plot - x_lo_plot) * 0.18
+            try:
+                from scipy.stats import gaussian_kde
+            except ImportError:
+                gaussian_kde = None
+            fig, ax = plt.subplots(figsize=(8, max(5, n_ridge * 0.5)))
+            fig.subplots_adjust(left=0.38)
+            x_grid = np.linspace(x_lo_plot, x_hi_plot, 150)
+            for i in range(n_ridge):
+                y_vals = samples[:, i]
+                y_vals = np.clip(y_vals, 1e-6, 1 - 1e-6)
+                if gaussian_kde is not None:
+                    try:
+                        kde = gaussian_kde(y_vals, bw_method=0.12)
+                        density = kde(x_grid)
+                    except Exception:
+                        hist, edges = np.histogram(y_vals, bins=40, range=(x_lo_plot, x_hi_plot), density=True)
+                        x_hist = (edges[:-1] + edges[1:]) / 2
+                        density = np.interp(x_grid, x_hist, hist)
+                else:
+                    hist, edges = np.histogram(y_vals, bins=40, range=(x_lo_plot, x_hi_plot), density=True)
+                    x_hist = (edges[:-1] + edges[1:]) / 2
+                    density = np.interp(x_grid, x_hist, hist)
+                density = np.maximum(density, 0)
+                scale = 0.25 / (density.max() + 1e-9)
+                y_offset = n_ridge - 1 - i
+                ax.fill_between(x_grid, y_offset, y_offset + density * scale, alpha=0.7, color="steelblue")
+                ax.plot(x_grid, y_offset + density * scale, color="navy", linewidth=0.8)
+                ax.axhline(y_offset, color="gray", linewidth=0.3, alpha=0.5)
+                ax.text(name_x_data, y_offset + 0.5 * scale * (density.max() or 1), names[i], fontsize=8, ha="right", va="center")
+            ax.set_xlabel("Fan vote share (posterior)")
+            ax.set_ylabel("Contestant", labelpad=8)
+            ax.set_yticks([])
+            ax.set_xlim(name_x_data - (x_hi_plot - x_lo_plot) * 0.04, x_hi_plot)
+            ax.set_ylim(-0.5, n_ridge)
+            ax.set_title(f"Ridge: Posterior distribution of fan vote (S{sd['season']} W{week})\nPeak = more certain; flat = more uncertain")
+            plt.tight_layout(rect=[0, 0, 1, 1])
+            plt.savefig(FIG_DIR / "fig10_ridge_posterior.png", dpi=150, bbox_inches="tight")
+            plt.close()
 
         print(f"  Figures saved in: {FIG_DIR}")
     except Exception as e:
